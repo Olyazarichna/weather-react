@@ -1,13 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-
-import Container from "@mui/material/Container";
-
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import css from "./Weather.module.css";
 
 export const Weather = () => {
   const [value, setValue] = useState("");
+  const [city, setCity] = useState("");
   const [loader, setLoader] = useState(false);
   const [temp, setTemp] = useState(null);
   const [desc, setDesc] = useState(null);
@@ -18,6 +15,8 @@ export const Weather = () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${KEY}&units=metric`;
 
   function showInfo(response) {
+    console.log(response);
+    setCity(response.data.name);
     setTemp(response.data.main.temp);
     setDesc(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
@@ -39,30 +38,44 @@ export const Weather = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={handleSubmit}>
-        <TextField
+    <section className={css.wrapper}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input
           id="outlined-basic"
           label="Enter a city"
           variant="outlined"
           placeholder="Enter a city"
           value={value}
           onChange={handleChange}
+          className={css.formInput}
         />
-        <Button variant="contained" color="success" type="submit">
+        <button
+          variant="contained"
+          color="success"
+          type="submit"
+          className={css.formBtn}
+        >
           Search
-        </Button>
+        </button>
       </form>
       {loader && (
         <>
-          <p>Temperature: {temp} °C </p>
-          <p>Description: {desc}</p>
-          <p>Humidity: {humidity} %</p>
-          <p>Wind: {wind} km/h</p>
-          <img src={icon} alt={desc} />.
+          <h2 className={css.title}>Current weather in {city}</h2>
+
+          <div className={css.infoContainer}>
+            <div className={css.info}>
+              <p className={css.text}>Temperature: {temp} °C </p>
+              <p className={css.text}>Description: {desc}</p>
+              <p className={css.text}>Humidity: {humidity} %</p>
+              <p className={css.text}>Wind: {wind} km/h</p>
+            </div>
+            <div className={css.img}>
+              <img src={icon} alt={desc} />
+            </div>
+          </div>
         </>
       )}
-    </Container>
+    </section>
   );
 };
 
