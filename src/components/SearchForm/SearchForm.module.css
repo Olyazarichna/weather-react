@@ -1,0 +1,35 @@
+.form {
+    display: flex;
+    justify-content: space-between;
+  }
+  .formInput {
+    padding: 10px;
+    width: 300px;
+  }
+  .formBtn {
+    width: 150px;
+    border-color: #fdbb2d;
+  }
+  .formInput,
+  .formInput,
+  .formBtn,
+  .formBtn {
+    font-size: 15px;
+    color: rgb(32, 147, 192) 100%;
+    border-radius: 4px;
+  }
+  .formInput:hover,
+  .formInput:focus,
+  .formBtn:hover,
+  .formBtn:focus {
+    cursor: pointer;
+    border-color: #fdbb2d;
+  }
+  .formBtn:hover,
+  .formBtn:focus {
+    background-color: #fdbb2d;
+  }
+  .formInput:hover,
+  .formInput:focus {
+    outline-color: #fdbb2d;
+  }
