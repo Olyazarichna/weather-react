@@ -4,6 +4,8 @@ import axios from "axios";
 import css from "./Weather.module.css";
 import { FormatedDate } from "../FormatedDate/FormatedDate";
 import { WeatherTemp } from "../WeatherTemp/WeatherTemp";
+
+
 export const Weather = () => {
   const [city, setCity] = useState("");
   const [loader, setLoader] = useState(false);
@@ -21,7 +23,7 @@ export const Weather = () => {
     setLoader(true);
   };
   function showInfo(response) {
-    // console.log("resp", response);
+  
     setCity(response.data.name);
     setTemp(response.data.main.temp);
     setDesc(response.data.weather[0].description);
@@ -30,9 +32,9 @@ export const Weather = () => {
     setIcon(
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
-    // setWeatherData(new Date(response.data.dt * 1000));
+
   }
-// console.log('wdata', weatherData);
+
   return (
     <section className={css.wrapper}>
       <SearchForm searchWeather={onFormSubmit} />

@@ -18,11 +18,11 @@ export const WeatherTemp = (props) => {
     return (
       <p className={css.text}> 
         {tempC}
-        <a href="#" onClick={showC}>
+        <a href="/" onClick={showC}>
            °C
         </a>
         |
-        <a href="#" onClick={showF}>
+        <a href="/" onClick={showF}>
            °F
         </a>
       </p>
@@ -31,11 +31,11 @@ export const WeatherTemp = (props) => {
     return (
       <p className={css.text}> 
         {tempF}
-        <a href="#" onClick={showC}>
+        <a href="/" onClick={showC}>
           °C
         </a>
         |
-        <a href="#" onClick={showF}>
+        <a href="/" onClick={showF}>
           °F
         </a>
       </p>
