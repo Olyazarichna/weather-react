@@ -3,7 +3,7 @@ import { SearchForm } from "../SearchForm/SearchForm";
 import axios from "axios";
 import css from "./Weather.module.css";
 import { FormatedDate } from "../FormatedDate/FormatedDate";
-
+import { WeatherTemp } from "../WeatherTemp/WeatherTemp";
 export const Weather = () => {
   const [city, setCity] = useState("");
   const [loader, setLoader] = useState(false);
@@ -12,7 +12,7 @@ export const Weather = () => {
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
   const [icon, setIcon] = useState("");
-  const [weatherData, setWeatherData] = useState("");
+  // const [weatherData, setWeatherData] = useState("");
   const KEY = `a98d70d03d8de2cdd126f4062901ce92`;
 
   const onFormSubmit = (value) => {
@@ -30,9 +30,9 @@ export const Weather = () => {
     setIcon(
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
-    setWeatherData(new Date(response.data.dt * 1000));
+    // setWeatherData(new Date(response.data.dt * 1000));
   }
-
+// console.log('wdata', weatherData);
   return (
     <section className={css.wrapper}>
       <SearchForm searchWeather={onFormSubmit} />
@@ -42,14 +42,15 @@ export const Weather = () => {
           <h2 className={css.title}>{city}</h2>
           <p className={css.title}>{}</p>
 
-          <FormatedDate date={weatherData} />
+          <FormatedDate/>
 
           <p className={css.text}> {desc}</p>
           <div className={css.description}>
             <div className={css.infoContainer}>
               <img src={icon} alt={desc} />
-
-              <p className={css.text}>{temp} °C |°F</p>
+<WeatherTemp celsius={temp}/>
+              {/* <p className={css.text}>{temp} °C |°F</p> */}
+            
             </div>
             <div className={css.info}>
               <p className={css.text}>Humidity: {humidity} %</p>

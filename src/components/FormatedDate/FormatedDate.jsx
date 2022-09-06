@@ -1,5 +1,7 @@
-export const FormatedDate = (props) => {
-  console.log("props", props);
+import css from './FormatedDate.module.css';
+
+export const FormatedDate = () => {
+
   let days = [
     "Sunday",
     "Monday",
@@ -9,19 +11,21 @@ export const FormatedDate = (props) => {
     "Friday",
     "Saturday",
   ];
-//   let day = days[props.date.getDay()];
-//   let hours = props.date.getHours();
-//   let minutes = props.date.getMinutes();
-//     if (hours < 10 || minutes < 10) {
-//       hours = `0${hours}`;
-//       minutes = `0${minutes}`;
-//     }
+
+  let day = days[new Date().getDay()];
+  let hours = new Date().getHours();
+  let minutes = new Date().getMinutes();
+  if (hours < 10 || minutes < 10) {
+    hours = `0${hours}`;
+    minutes = `0${minutes}`;
+  }
   return (
     <>
-      <div>
-        {/* {day}
-        {hours}:{minutes} */}
-      </div>
+      
+        <div className={css.text}>
+          {day} {hours}:{minutes}
+        </div>
+   
     </>
   );
 };
