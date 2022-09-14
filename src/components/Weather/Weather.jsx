@@ -5,7 +5,7 @@ import css from "./Weather.module.css";
 import { FormatedDate } from "../FormatedDate/FormatedDate";
 import { WeatherTemp } from "../WeatherTemp/WeatherTemp";
 
-
+import {Forecast} from '../Forecast/Forecast';
 export const Weather = () => {
   const [city, setCity] = useState("");
   const [loader, setLoader] = useState(false);
@@ -14,7 +14,8 @@ export const Weather = () => {
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
   const [icon, setIcon] = useState("");
-  // const [weatherData, setWeatherData] = useState("");
+  const [coord, setCoord] = useState("");
+
   const KEY = `a98d70d03d8de2cdd126f4062901ce92`;
 
   const onFormSubmit = (value) => {
@@ -23,7 +24,6 @@ export const Weather = () => {
     setLoader(true);
   };
   function showInfo(response) {
-  
     setCity(response.data.name);
     setTemp(response.data.main.temp);
     setDesc(response.data.weather[0].description);
@@ -32,7 +32,7 @@ export const Weather = () => {
     setIcon(
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
-
+    setCoord(response.data.coord);
   }
 
   return (
@@ -51,14 +51,14 @@ export const Weather = () => {
             <div className={css.infoContainer}>
               <img src={icon} alt={desc} />
 <WeatherTemp celsius={temp}/>
-              {/* <p className={css.text}>{temp} °C |°F</p> */}
-            
+    
             </div>
             <div className={css.info}>
               <p className={css.text}>Humidity: {humidity} %</p>
               <p className={css.text}>Wind: {wind} km/h</p>
             </div>
           </div>
+          <Forecast data={coord}/>
         </>
       )}
     </section>

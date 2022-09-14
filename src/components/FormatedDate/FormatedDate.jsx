@@ -21,11 +21,9 @@ export const FormatedDate = () => {
   }
   return (
     <>
-      
         <div className={css.text}>
           {day} {hours}:{minutes}
         </div>
-   
     </>
   );
 };
